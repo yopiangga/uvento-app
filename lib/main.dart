@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:uvento_app/HomePage.dart';
 import 'package:uvento_app/StartPage.dart';
 
 void main() {
@@ -13,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Uvento APP',
-      home: StartPage(),
+      home: HomePage(),
       debugShowCheckedModeBanner: false,
     );
   }

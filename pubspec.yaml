@@ -80,6 +80,8 @@ flutter:
     - assets/images/mic.png
     - assets/images/notification.png
     - assets/images/ping-pong.png
+    - assets/images/LOGO.png
+    - assets/images/user1.png
   #   - images/a_dot_burr.jpeg
   #   - images/a_dot_ham.jpeg
 

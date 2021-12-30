@@ -96,10 +96,10 @@ class StartPage extends StatelessWidget {
           ),
           Positioned(
             left: MediaQuery.of(context).size.width * 3 / 10,
-            bottom: MediaQuery.of(context).size.width * 2 / 10 + 20,
+            bottom: MediaQuery.of(context).size.width * 2 / 10 + 10,
             child: Container(
               // width: MediaQuery.of(context).size.width * 3 / 10,
-              height: MediaQuery.of(context).size.width * 3 / 10,
+              height: MediaQuery.of(context).size.width * 2 / 10,
               child: Image.asset(
                 "assets/images/flat9.png",
                 fit: BoxFit.cover,
@@ -157,7 +157,9 @@ class StartPage extends StatelessWidget {
                   Text(
                     "There’s a lot happening around you! Our mission is to provide what’s happening near you!",
                     style: TextStyle(
-                        color: Colors.white, fontWeight: FontWeight.w600),
+                        color: Colors.white,
+                        fontWeight: FontWeight.w600,
+                        height: 1.5),
                   ),
                   // Flexible(child: Text("")),
                   SizedBox(
