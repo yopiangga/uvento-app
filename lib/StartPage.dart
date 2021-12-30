@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'dart:math' as math;
 
+import 'package:uvento_app/HomePage.dart';
+
 class StartPage extends StatelessWidget {
   const StartPage({Key? key}) : super(key: key);
 
@@ -165,21 +167,29 @@ class StartPage extends StatelessWidget {
                   SizedBox(
                     height: 20,
                   ),
-                  Row(
-                    children: [
-                      Text("Get Started",
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 16)),
-                      SizedBox(
-                        width: 20,
-                      ),
-                      Icon(
-                        Icons.arrow_right_alt,
-                        color: Colors.white,
-                      )
-                    ],
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).pushReplacement(
+                          MaterialPageRoute(builder: (context) {
+                        return HomePage();
+                      }));
+                    },
+                    child: Row(
+                      children: [
+                        Text("Get Started",
+                            style: TextStyle(
+                                color: Colors.white,
+                                fontWeight: FontWeight.w600,
+                                fontSize: 16)),
+                        SizedBox(
+                          width: 20,
+                        ),
+                        Icon(
+                          Icons.arrow_right_alt,
+                          color: Colors.white,
+                        )
+                      ],
+                    ),
                   )
                 ],
               ),

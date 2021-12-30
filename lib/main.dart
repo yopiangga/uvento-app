@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Uvento APP',
-      home: HomePage(),
+      home: StartPage(),
       debugShowCheckedModeBanner: false,
     );
   }

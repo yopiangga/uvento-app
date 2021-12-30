@@ -7,8 +7,25 @@ class HomePage extends StatefulWidget {
   _HomePageState createState() => _HomePageState();
 }
 
-class _HomePageState extends State<HomePage> {
+class _HomePageState extends State<HomePage>
+    with SingleTickerProviderStateMixin {
   int DateActive = 0;
+  int menuActive = 0;
+
+  late TabController _tabController;
+
+  @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    _tabController = new TabController(length: 3, vsync: this);
+  }
+
+  @override
+  void dispose() {
+    // TODO: implement dispose
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -24,15 +41,32 @@ class _HomePageState extends State<HomePage> {
               Image.asset("assets/images/menu.png"),
             ],
           ),
-          bottomNavigationBar: TabBar(
-            indicatorColor: Color(0xffFCCD00),
-            tabs: [
-              Tab(icon: Icon(Icons.directions_car)),
-              Tab(icon: Icon(Icons.directions_transit)),
-              Tab(icon: Icon(Icons.directions_bike)),
-            ],
+          bottomNavigationBar: Container(
+            padding: EdgeInsets.fromLTRB(20, 10, 20, 10),
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.only(
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10)),
+                color: Color(0xff152F3E),
+                boxShadow: [
+                  BoxShadow(
+                    color: Color(0xff1A2E35).withOpacity(0.05),
+                    spreadRadius: 3,
+                    blurRadius: 12,
+                    offset: Offset(3, 0), // changes position of shadow
+                  ),
+                ]),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                BottomNavBar(Icons.home, "Home", 0),
+                BottomNavBar(Icons.search, "Search", 1),
+                BottomNavBar(Icons.star, "Star", 2),
+              ],
+            ),
           ),
           body: TabBarView(
+            controller: _tabController,
             children: [
               ListView(
                 children: [
@@ -181,11 +215,73 @@ class _HomePageState extends State<HomePage> {
                   )
                 ],
               ),
-              Text("Page 2"),
-              Text("Page 3"),
+              Center(
+                  child: Text(
+                "Page Search",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold),
+              )),
+              Center(
+                  child: Text(
+                "Page Star",
+                style: TextStyle(
+                    color: Colors.white,
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold),
+              )),
             ],
           ),
         ));
+  }
+
+  GestureDetector BottomNavBar(icon, title, index) {
+    return GestureDetector(
+      onTap: () {
+        setState(() {
+          menuActive = index;
+          _tabController.animateTo(index);
+        });
+      },
+      child: Container(
+          height: 55,
+          width: index == menuActive
+              ? MediaQuery.of(context).size.width * 4 / 10
+              : 55,
+          child: Container(
+            decoration: BoxDecoration(
+                color:
+                    Color(0xff0F2632).withOpacity(index == menuActive ? 1 : 0),
+                borderRadius: BorderRadius.circular(30)),
+            child: Container(
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Icon(icon,
+                      size: 28,
+                      color: index == menuActive
+                          ? Color(0xffFFA700)
+                          : Colors.white),
+                  index == menuActive
+                      ? SizedBox(
+                          width: 10,
+                        )
+                      : SizedBox(width: 0),
+                  index == menuActive
+                      ? Text(title,
+                          style: TextStyle(
+                            fontSize: 16,
+                            color: Color(0xffFFA700),
+                            fontWeight: FontWeight.bold,
+                          ))
+                      : Text("")
+                ],
+              ),
+            ),
+          )),
+    );
   }
 
   Container CardPopularEvent(title, date, location, image) {
